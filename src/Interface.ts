@@ -4,7 +4,8 @@ export interface ICurrentForecast {
     maxTemp: number;
     minTemp: number;
     Wind: number;
-    Precipitation: number;
+    precipitation: number;
+    Humidity: number; 
 
 
 }

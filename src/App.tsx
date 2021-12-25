@@ -5,19 +5,20 @@ import { ICurrentForecast } from './Interface';
 
 const App: React.FC = () => {
   const [searchLocation,setSearchLocation] = useState<string>('')
-  const [data,setData] = useState([])
+  const [data,setData] = useState<any>({})
   const disableSearch = searchLocation.trim() === '';
 
 function getData(e: React.KeyboardEvent) {
 
 if(e.key === "Enter") {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchLocation}&units=metric&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`).then(
-    res => res.json()
-  ).then(
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchLocation}&units=metric&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`)
+  .then(
+    res => res.json())
+    .then(
     data => {
       
       setData(data)
-     
+     setSearchLocation('')
      
     }
   )
@@ -30,6 +31,7 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
   setSearchLocation(e.target.value)
 }
   return (
+    <>
     <div className="container">
       <div className="title">
   <h1>Weather App</h1>
@@ -46,9 +48,18 @@ const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       // disabled={disableSearch}
       />
      
-    
-  </div>
-    </div>
+
+    {/* <Forecast precipitation={data.main.temp} description={data.weather.description } Humidity={data.main.humidity} minTemp={data.main.temp_min} maxTemp={data.main.temp_max} Wind={data.wind.speed} currentTemp={data.main.feels_like}/> */}
+  
+</div>
+ 
+ </div>
+ 
+
+
+ 
+  
+    </>
   );
 }
 
