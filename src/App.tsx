@@ -1,5 +1,6 @@
 import React, {FC ,useState, ChangeEvent,useEffect} from 'react';
 import Forecast from './components/Forecast'
+import axios from 'axios';
 import './App.css';
 import { ICurrentForecast } from './Interface';
 
@@ -11,25 +12,39 @@ const App: React.FC = () => {
 
 async function getData(e: React.KeyboardEvent) {
 
+
+
 if(e.key === "Enter") {
-  await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchLocation}&units=metric&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`)
-  .then(
-    res => res.json())
-    .then(
-    data => {
-      setData(data)
+    axios
+    .get(`https://api.openweathermap.org/data/2.5/weather?q=${searchLocation}&units=metric&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`)
+    .then(response => {
+      setData(response)
      setSearchLocation('')
-     const lat = data.coord.lat
-     const long = data.coord.lon
-      function getOne() {
-       fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`)
-      .then(res => res.json() )
-      .then(data => {
-        setOneCall(data)
-      })
-     }
-    }
-  )
+     return axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`)
+    })
+    .then(response => {
+      setOneCall(response)
+    })
+
+  // await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchLocation}&units=metric&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`)
+  // .then(
+  //   res => res.json())
+  //   .then(
+  //   data => {
+  //     setData(data)
+  //    setSearchLocation('')
+  //   //  const lat = data.coord.lat
+  //   //  const long = data.coord.lon
+  //    return 
+  //     function getOne() {
+  //      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=hourly,minutely,alerts&appid=6cd3632b991b6081d510d1731fbb397e`)
+  //     .then(res => res.json() )
+  //     .then(data => {
+  //       setOneCall(data)
+  //     })
+  //    }
+  //   }
+  // )
 }
 }
 
