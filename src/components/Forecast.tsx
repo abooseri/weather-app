@@ -12,29 +12,17 @@ const Forecast: FC<ICurrentForecast> = ({
 }) => {
     return (
         <>
-        <div>
+            <h1>Temperature: {currentTemp}°C</h1>
+            <p>{precipitation}</p>
+           
+            <p>Humidity:{Humidity}%</p> 
+            <p>Wind speed:{Wind} km/h </p>
             
-            ${precipitation}
-            ${Humidity}
-            ${Wind}
-            ${currentTemp}
-            ${description}
-            ${maxTemp}
-            ${minTemp}
+            <p>Description: {description}</p>
+            <p>High Temp: {maxTemp}°C</p>
+            <p>Low Temp: {minTemp}°C</p>
 
-        </div>
-        <h2>Locations</h2>
-        <table>
-          <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr><td>Belfast</td></tr>
-          <tr><td>New York</td></tr>
-          </tbody>
-        </table>
+        
         </>
     )
 }

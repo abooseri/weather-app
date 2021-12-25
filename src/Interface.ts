@@ -1,5 +1,5 @@
 export interface ICurrentForecast {
-    description: string;
+    description?: string;
     currentTemp: number;
     maxTemp: number;
     minTemp: number;
