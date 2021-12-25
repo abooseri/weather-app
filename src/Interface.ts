@@ -1,15 +1,20 @@
 export interface ICurrentForecast {
-    description?: string;
+    description: string;
     currentTemp: number;
     maxTemp: number;
     minTemp: number;
     Wind: number;
-    precipitation: number;
+    precipitation?: number;
     Humidity: number; 
 
 
 }
 
-export interface I7dayForecast {
+export interface IdayForecast {
+    precipitation: number;
+    day?: string;
+    description?: string;
+    maxTemp: number;
+    minTemp: number;
 
 }
